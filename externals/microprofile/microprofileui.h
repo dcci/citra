@@ -1022,7 +1022,7 @@ void MicroProfileDrawDetailedBars(uint32_t nWidth, uint32_t nHeight, int nBaseY,
             int64_t nBaseTicks = bGpu ? nBaseTicksGpu : nBaseTicksCpu;
             char ThreadName[MicroProfileThreadLog::THREAD_MAX_LEN + 16];
             uint64_t nThreadId = pLog->nThreadId;
-            snprintf(ThreadName, sizeof(ThreadName)-1, "%04llx: %s", nThreadId, &pLog->ThreadName[0] );
+            snprintf(ThreadName, sizeof(ThreadName)-1, "%04lx: %s", nThreadId, &pLog->ThreadName[0] );
             nY += 3;
             uint32_t nThreadColor = -1;
             if(pLog->nThreadId == nContextSwitchHoverThreadAfter || pLog->nThreadId == nContextSwitchHoverThreadBefore)
@@ -1234,7 +1234,7 @@ void MicroProfileDrawDetailedBars(uint32_t nWidth, uint32_t nHeight, int nBaseY,
                 // nThreadId is 32-bit on Windows
                 int nStrLen = snprintf(ThreadName, sizeof(ThreadName)-1, "%04x: %s%s", nThreadId, cLocal, i < nNumThreadsBase ? &S.Pool[i]->ThreadName[0] : MICROPROFILE_THREAD_NAME_FROM_ID(nThreadId) );
 #else
-                int nStrLen = snprintf(ThreadName, sizeof(ThreadName)-1, "%04llx: %s%s", nThreadId, cLocal, i < nNumThreadsBase ? &S.Pool[i]->ThreadName[0] : MICROPROFILE_THREAD_NAME_FROM_ID(nThreadId) );
+                int nStrLen = snprintf(ThreadName, sizeof(ThreadName)-1, "%04lx: %s%s", nThreadId, cLocal, i < nNumThreadsBase ? &S.Pool[i]->ThreadName[0] : MICROPROFILE_THREAD_NAME_FROM_ID(nThreadId) );
 #endif
                 uint32_t nThreadColor = -1;
                 if(nThreadId == nContextSwitchHoverThreadAfter || nThreadId == nContextSwitchHoverThreadBefore)
@@ -1608,7 +1608,7 @@ void MicroProfileDrawBarMetaCountCallback(uint32_t nTimer, uint32_t nIdx, uint64
 {
     uint64_t* pCounters = (uint64_t*)pExtra;
     char sBuffer[SBUF_MAX];
-    int nLen = snprintf(sBuffer, SBUF_MAX-1, "%5llu", pCounters[nTimer]);
+    int nLen = snprintf(sBuffer, SBUF_MAX-1, "%5lu", pCounters[nTimer]);
     MicroProfileDrawText(nX - nLen * (MICROPROFILE_TEXT_WIDTH+1), nY, (uint32_t)-1, sBuffer, nLen);
 }
 

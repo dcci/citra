@@ -106,7 +106,7 @@ ResultVal<bool> File::SyncRequest() {
 
         if (offset + length > backend->GetSize()) {
             LOG_ERROR(Service_FS,
-                      "Reading from out of bounds offset=0x%llX length=0x%08X file_size=0x%llX",
+                      "Reading from out of bounds offset=0x%lX length=0x%08X file_size=0x%lX",
                       offset, length, backend->GetSize());
         }
 
